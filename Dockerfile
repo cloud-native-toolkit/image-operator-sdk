@@ -1,8 +1,8 @@
 FROM quay.io/buildah/stable:v1.15.1
 
-ENV OPERATOR_SDK_VERSION v0.17.2
-ENV GOLANG_VERSION 1.15.2
-ENV OCCLI_VERSION 4.5.9
+ARG OPERATOR_SDK_VERSION=v1.0.1
+ARG GOLANG_VERSION=1.15.2
+ARG OCCLI_VERSION=4.5.9
 
 RUN curl -OJL https://github.com/operator-framework/operator-sdk/releases/download/${RELEASE_VERSION}/operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu && \
     chmod +x operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu && \
