@@ -18,3 +18,4 @@ RUN curl -OJL https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${OCCLI_
     tar -C /usr/local/bin -xzf openshift-client-linux.tar.gz && \
     rm openshift-client-linux.tar.gz
 
+RUN yum -y groupinstall "Development Tools" && yum clean all

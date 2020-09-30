@@ -6,3 +6,4 @@ Container image for building operators in a CI pipeline. The image contains the 
 - operator-sdk - v1.0.1
 - golang - v1.15.2
 - oc cli - v4.5.9
+- make
