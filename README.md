@@ -7,3 +7,4 @@ Container image for building operators in a CI pipeline. The image contains the 
 - golang - v1.15.2
 - oc cli - v4.5.9
 - make
+- opm cli - v0.14.3

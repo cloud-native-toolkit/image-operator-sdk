@@ -1,8 +1,9 @@
 FROM quay.io/podman/stable:v2.0.6
 
-ENV OPERATOR_SDK_VERSION v1.0.1
-ENV GOLANG_VERSION 1.15.2
-ENV OCCLI_VERSION 4.5.9
+ARG OPERATOR_SDK_VERSION=v1.0.1
+ARG GOLANG_VERSION=1.15.2
+ARG OCCLI_VERSION=4.5.9
+ARG OPM_VERSION=1.14.3
 
 RUN curl -OJL https://github.com/operator-framework/operator-sdk/releases/download/${OPERATOR_SDK_VERSION}/operator-sdk-${OPERATOR_SDK_VERSION}-x86_64-linux-gnu && \
     chmod +x operator-sdk-${OPERATOR_SDK_VERSION}-x86_64-linux-gnu && \
@@ -18,8 +19,8 @@ RUN curl -OJL https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${OCCLI_
     tar -C /usr/local/bin -xzf openshift-client-linux.tar.gz && \
     rm openshift-client-linux.tar.gz
 
-RUN yum -y groupinstall "Development Tools" && yum clean all
+RUN yum -y install make && yum clean all
 
-RUN curl -L https://github.com/operator-framework/operator-registry/releases/download/v1.14.3/linux-amd64-opm -o opm && \
+RUN curl -L https://github.com/operator-framework/operator-registry/releases/download/v${OPM_VERSION}/linux-amd64-opm -o opm && \
     chmod +x opm && \
     mv opm /usr/local/bin
