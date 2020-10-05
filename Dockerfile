@@ -1,8 +1,8 @@
 FROM quay.io/podman/stable:v2.0.6
 
-ARG OPERATOR_SDK_VERSION=v1.0.1
-ARG GOLANG_VERSION=1.15.2
-ARG OCCLI_VERSION=4.5.9
+ENV OPERATOR_SDK_VERSION v1.0.1
+ENV GOLANG_VERSION 1.15.2
+ENV OCCLI_VERSION 4.5.9
 
 RUN curl -OJL https://github.com/operator-framework/operator-sdk/releases/download/${RELEASE_VERSION}/operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu && \
     chmod +x operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu && \
