@@ -21,6 +21,20 @@ RUN curl -OJL https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${OCCLI_
 
 RUN yum -y groupinstall "Development Tools" && yum clean all
 
+
 RUN curl -L https://github.com/operator-framework/operator-registry/releases/download/v${OPM_VERSION}/linux-amd64-opm -o opm && \
     chmod +x opm && \
     mv opm /usr/local/bin
+
+RUN yum -y install findutils && yum clean all && \
+    curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | \
+    bash && \
+    chmod +x kustomize && \
+    mv ./kustomize /usr/local/bin/
+
+RUN export ARCHOPER=$(uname -m); \
+    export OSOPER=$(uname -s | tr '[:upper:]' '[:lower:]' | sed 's/darwin/apple-darwin/' | sed 's/linux/linux-gnu/'); \
+    curl -L -o ansible-operator https://github.com/operator-framework/operator-sdk/releases/download/v1.0.1/ansible-operator-v1.0.1-${ARCHOPER}-${OSOPER} && \
+    chmod +x ansible-operator && \
+    mv ansible-operator /usr/local/bin/ansible-operator
+
