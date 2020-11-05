@@ -38,6 +38,4 @@ RUN export ARCHOPER=$(uname -m); \
     chmod +x ansible-operator && \
     mv ansible-operator /usr/local/bin/ansible-operator
 
-RUN echo "" >> ~/.bashrc && echo "alias which='command -v'" >> ~/.bashrc && \
-    echo "" >> ~/.cshrc && echo "alias which='command -v'" >> ~/.cshrc && \
-    echo "" >> ~/.tcshrc && echo "alias which='command -v'" >> ~/.tcshrc
+RUN yum -y install which && yum clean all
