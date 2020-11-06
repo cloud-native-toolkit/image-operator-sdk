@@ -1,4 +1,4 @@
-FROM quay.io/podman/stable:v2.0.6
+FROM quay.io/podman/stable:latest
 
 ARG OPERATOR_SDK_VERSION=v1.0.1
 ARG GOLANG_VERSION=1.15.2
