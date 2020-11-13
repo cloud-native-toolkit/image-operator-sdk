@@ -1,9 +1,11 @@
-FROM quay.io/podman/stable:latest
+FROM docker:dind
 
 ARG OPERATOR_SDK_VERSION=v1.0.1
 ARG GOLANG_VERSION=1.15.2
 ARG OCCLI_VERSION=4.5.9
 ARG OPM_VERSION=1.14.3
+
+RUN apk add --no-cache curl
 
 RUN curl -OJL https://github.com/operator-framework/operator-sdk/releases/download/${OPERATOR_SDK_VERSION}/operator-sdk-${OPERATOR_SDK_VERSION}-x86_64-linux-gnu && \
     chmod +x operator-sdk-${OPERATOR_SDK_VERSION}-x86_64-linux-gnu && \
@@ -19,23 +21,9 @@ RUN curl -OJL https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${OCCLI_
     tar -C /usr/local/bin -xzf openshift-client-linux.tar.gz && \
     rm openshift-client-linux.tar.gz
 
-RUN yum -y groupinstall "Development Tools" && yum clean all
+#RUN yum -y groupinstall "Development Tools" && yum clean all
 
 
 RUN curl -L https://github.com/operator-framework/operator-registry/releases/download/v${OPM_VERSION}/linux-amd64-opm -o opm && \
     chmod +x opm && \
     mv opm /usr/local/bin
-
-RUN yum -y install findutils && yum clean all && \
-    curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | \
-    bash && \
-    chmod +x kustomize && \
-    mv ./kustomize /usr/local/bin/
-
-RUN export ARCHOPER=$(uname -m); \
-    export OSOPER=$(uname -s | tr '[:upper:]' '[:lower:]' | sed 's/darwin/apple-darwin/' | sed 's/linux/linux-gnu/'); \
-    curl -L -o ansible-operator https://github.com/operator-framework/operator-sdk/releases/download/v1.0.1/ansible-operator-v1.0.1-${ARCHOPER}-${OSOPER} && \
-    chmod +x ansible-operator && \
-    mv ansible-operator /usr/local/bin/ansible-operator
-
-RUN yum -y install which && yum clean all
