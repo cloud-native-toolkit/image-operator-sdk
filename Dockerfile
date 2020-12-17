@@ -38,4 +38,6 @@ RUN export ARCHOPER=$(uname -m); \
     chmod +x ansible-operator && \
     mv ansible-operator /usr/local/bin/ansible-operator
 
-RUN yum -y install which && yum clean all
+RUN yum -y install which
+
+RUN yum -y install openssl && yum clean all
