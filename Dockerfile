@@ -21,7 +21,6 @@ RUN curl -OJL https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${OCCLI_
 
 RUN yum -y groupinstall "Development Tools" && yum clean all
 
-
 RUN curl -L https://github.com/operator-framework/operator-registry/releases/download/v${OPM_VERSION}/linux-amd64-opm -o opm && \
     chmod +x opm && \
     mv opm /usr/local/bin
@@ -47,3 +46,6 @@ RUN export ARCHOPER=$(uname -m); \
 RUN yum -y install which
 
 RUN yum -y install openssl && yum clean all
+
+ENV GOPATH=/go
+RUN mkdir -p ${GOPATH}
