@@ -5,6 +5,7 @@ Container image for building operators in a CI pipeline. The image contains the 
 - podman - v2.1.1
 - operator-sdk - v1.2.0
 - ansible-operator - v1.2.0
+- helm-operator - v1.2.0
 - golang - v1.15.2
 - oc cli - v4.5.9
 - opm cli - v1.15.3

@@ -34,9 +34,15 @@ RUN yum -y install findutils && yum clean all && \
 
 RUN export ARCHOPER=$(uname -m); \
     export OSOPER=$(uname -s | tr '[:upper:]' '[:lower:]' | sed 's/darwin/apple-darwin/' | sed 's/linux/linux-gnu/'); \
-    curl -L -o ansible-operator https://github.com/operator-framework/operator-sdk/releases/download/v1.0.1/ansible-operator-${OPERATOR_SDK_VERSION}-${ARCHOPER}-${OSOPER} && \
+    curl -L -o ansible-operator https://github.com/operator-framework/operator-sdk/releases/download/${OPERATOR_SDK_VERSION}/ansible-operator-${OPERATOR_SDK_VERSION}-${ARCHOPER}-${OSOPER} && \
     chmod +x ansible-operator && \
     mv ansible-operator /usr/local/bin/ansible-operator
+
+RUN export ARCHOPER=$(uname -m); \
+    export OSOPER=$(uname -s | tr '[:upper:]' '[:lower:]' | sed 's/darwin/apple-darwin/' | sed 's/linux/linux-gnu/'); \
+    curl -L -o helm-operator https://github.com/operator-framework/operator-sdk/releases/download/${OPERATOR_SDK_VERSION}/helm-operator-${OPERATOR_SDK_VERSION}-${ARCHOPER}-${OSOPER} && \
+    chmod +x helm-operator && \
+    mv helm-operator /usr/local/bin/helm-operator
 
 RUN yum -y install which
 
