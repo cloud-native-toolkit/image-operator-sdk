@@ -3,7 +3,7 @@ FROM quay.io/podman/stable:latest
 ARG OPERATOR_SDK_VERSION=v1.2.0
 ARG GOLANG_VERSION=1.15.2
 ARG OCCLI_VERSION=4.5.9
-ARG OPM_VERSION=1.14.3
+ARG OPM_VERSION=1.15.3
 
 RUN curl -OJL https://github.com/operator-framework/operator-sdk/releases/download/${OPERATOR_SDK_VERSION}/operator-sdk-${OPERATOR_SDK_VERSION}-x86_64-linux-gnu && \
     chmod +x operator-sdk-${OPERATOR_SDK_VERSION}-x86_64-linux-gnu && \
@@ -34,7 +34,7 @@ RUN yum -y install findutils && yum clean all && \
 
 RUN export ARCHOPER=$(uname -m); \
     export OSOPER=$(uname -s | tr '[:upper:]' '[:lower:]' | sed 's/darwin/apple-darwin/' | sed 's/linux/linux-gnu/'); \
-    curl -L -o ansible-operator https://github.com/operator-framework/operator-sdk/releases/download/v1.0.1/ansible-operator-v1.0.1-${ARCHOPER}-${OSOPER} && \
+    curl -L -o ansible-operator https://github.com/operator-framework/operator-sdk/releases/download/v1.0.1/ansible-operator-${OPERATOR_SDK_VERSION}-${ARCHOPER}-${OSOPER} && \
     chmod +x ansible-operator && \
     mv ansible-operator /usr/local/bin/ansible-operator
 
