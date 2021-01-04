@@ -48,4 +48,4 @@ RUN yum -y install which
 RUN yum -y install openssl && yum clean all
 
 ENV GOPATH=/go
-RUN mkdir -p ${GOPATH}
+RUN mkdir -p ${GOPATH} && chmod +w ${GOPATH}
