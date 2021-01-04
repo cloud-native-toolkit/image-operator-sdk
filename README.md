@@ -19,6 +19,5 @@ The container image can be found at https://quay.io/repository/ibmgaragecloud/op
 
 ## Image build
 
-The container image build is triggered automatically in quay.io when commits are pushed to `main` branch or new tags are created. Pushes to `main` branch are tagged as `latest` while git tags are used as image version tags.
+The container image build is triggered automatically via a GitHub action when commits are pushed to `main` branch or new tags/releases are created. Pushes to `main` branch are tagged as `latest` while git tags are used as image version tags.
 
-[![Build status](https://quay.io/repository/ibmgaragecloud/operator-sdk/status)](https://quay.io/repository/ibmgaragecloud/operator-sdk)
