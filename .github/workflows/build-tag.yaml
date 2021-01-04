@@ -1,0 +1,36 @@
+name: Publish assets
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  path-context:
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.release.tag_name }}
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Login to Quay
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_TOKEN }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: quay.io/ibmgaragecloud/operator-sdk:${{ github.event.release.tag_name }}
