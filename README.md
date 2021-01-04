@@ -12,3 +12,13 @@ Container image for building operators in a CI pipeline. The image contains the 
 - kustomize - v3.8.4
 - "Developer Tools" group (make, gcc, etc)
 - openssl
+
+## Container image
+
+The container image can be found at https://quay.io/repository/ibmgaragecloud/operator-sdk
+
+## Image build
+
+The container image build is triggered automatically in quay.io when commits are pushed to `main` branch or new tags are created. Pushes to `main` branch are tagged as `latest` while git tags are used as image version tags.
+
+[![Build status](https://quay.io/repository/ibmgaragecloud/operator-sdk/status)](https://quay.io/repository/ibmgaragecloud/operator-sdk)
